@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using ToDoBlazor.Data;
+using ToDoBlazor.Services;
 
 namespace ToDoBlazor
 {
@@ -30,8 +31,8 @@ namespace ToDoBlazor
             services.AddRazorPages();
             services.AddServerSideBlazor();
             services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlite("Data Source=./Data/App.db")
-        );
+                options.UseSqlite("Data Source=./Data/App.db"));
+            services.AddScoped<StateManager>(); //Injecting our own StateManager
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

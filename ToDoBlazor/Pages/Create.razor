@@ -1,5 +1,7 @@
 ﻿@page "/Create"
 @using ToDoBlazor.Data
+@using ToDoBlazor.Services 
+@inject StateManager stateManager; 
 
 <div class="container bg-dark text-white p-5">
     <h3>Create</h3>
@@ -54,5 +56,9 @@
         await _db.ToDoItems.AddAsync(toDoItem);
         await _db.SaveChangesAsync();
         NavMan.NavigateTo("/");
+
+        toDoItem = new ToDoItem();
+
+        stateManager.CallOnChange();
     }
 }
